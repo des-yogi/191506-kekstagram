@@ -75,6 +75,23 @@ filterHeat.addEventListener('click', function (e) {
 // При нажатии на кнопки .upload-resize-controls-button-dec
 // и .upload-resize-controls-button-inc должно изменяться значение поля
 // .upload-resize-controls-value.
+var resizePlusBtn = uploadSection.querySelector('.upload-resize-controls-button-inc');
+var resizeMinusBtn = uploadSection.querySelector('.upload-resize-controls-button-dec');
+var sizeOutputField = uploadSection.querySelector('.upload-resize-controls-value');
+sizeOutputField.value = '50%';
+sizeOutputField.step = '25%';
+
+resizePlusBtn.addEventListener('click', function (e) {
+  if (parseInt(sizeOutputField.value, 10) < 100) {
+    sizeOutputField.value = parseInt(sizeOutputField.value, 10) + parseInt(sizeOutputField.step, 10) + '%';
+  }
+
+});
+resizeMinusBtn.addEventListener('click', function (e) {
+  if (parseInt(sizeOutputField.value, 10) > 0) {
+    sizeOutputField.value = parseInt(sizeOutputField.value, 10) - parseInt(sizeOutputField.step, 10) + '%';
+  }
+});
 
 // Значение должно изменяться с шагом в 25. Например, если значение поля установлено в 50%,
 // после нажатия на «+», значение должно стать равным 75%. Максимальное значение — 100%.
