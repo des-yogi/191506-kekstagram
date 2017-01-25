@@ -78,18 +78,20 @@ filterHeat.addEventListener('click', function (e) {
 var resizePlusBtn = uploadSection.querySelector('.upload-resize-controls-button-inc');
 var resizeMinusBtn = uploadSection.querySelector('.upload-resize-controls-button-dec');
 var sizeOutputField = uploadSection.querySelector('.upload-resize-controls-value');
-sizeOutputField.value = '50%';
+sizeOutputField.value = '100%';
 sizeOutputField.step = '25%';
 
 resizePlusBtn.addEventListener('click', function (e) {
   if (parseInt(sizeOutputField.value, 10) < 100) {
     sizeOutputField.value = parseInt(sizeOutputField.value, 10) + parseInt(sizeOutputField.step, 10) + '%';
+    imgPreview.style.transform = 'scale(' + parseInt(sizeOutputField.value, 10) / 100 + ')';
   }
 
 });
 resizeMinusBtn.addEventListener('click', function (e) {
   if (parseInt(sizeOutputField.value, 10) > 0) {
     sizeOutputField.value = parseInt(sizeOutputField.value, 10) - parseInt(sizeOutputField.step, 10) + '%';
+    imgPreview.style.transform = 'scale(' + parseInt(sizeOutputField.value, 10) / 100 + ')';
   }
 });
 
