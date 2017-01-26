@@ -75,6 +75,17 @@ filterHeat.addEventListener('click', function (e) {
 // При нажатии на кнопки .upload-resize-controls-button-dec
 // и .upload-resize-controls-button-inc должно изменяться значение поля
 // .upload-resize-controls-value.
+
+// Значение должно изменяться с шагом в 25. Например, если значение поля установлено в 50%,
+// после нажатия на «+», значение должно стать равным 75%. Максимальное значение — 100%.
+// Значение по умолчанию — 100%
+
+// При изменении значения поля .upload-resize-controls-value изображению
+// .filter-image-preview должен добавляться соответствующий стиль CSS,
+// который с помощью трансформации scale задает масштаб. Например,
+// если в поле стоит значение 75%, то в стиле изображения должно быть написано
+// transform: scale(0.75)
+
 var resizePlusBtn = uploadSection.querySelector('.upload-resize-controls-button-inc');
 var resizeMinusBtn = uploadSection.querySelector('.upload-resize-controls-button-dec');
 var sizeOutputField = uploadSection.querySelector('.upload-resize-controls-value');
@@ -89,18 +100,8 @@ resizePlusBtn.addEventListener('click', function (e) {
 
 });
 resizeMinusBtn.addEventListener('click', function (e) {
-  if (parseInt(sizeOutputField.value, 10) > 0) {
+  if (parseInt(sizeOutputField.value, 10) > 0 && parseInt(sizeOutputField.value, 10) > 25) {
     sizeOutputField.value = parseInt(sizeOutputField.value, 10) - parseInt(sizeOutputField.step, 10) + '%';
     imgPreview.style.transform = 'scale(' + parseInt(sizeOutputField.value, 10) / 100 + ')';
   }
 });
-
-// Значение должно изменяться с шагом в 25. Например, если значение поля установлено в 50%,
-// после нажатия на «+», значение должно стать равным 75%. Максимальное значение — 100%.
-// Значение по умолчанию — 100%
-
-// При изменении значения поля .upload-resize-controls-value изображению
-// .filter-image-preview должен добавляться соответствующий стиль CSS,
-// который с помощью трансформации scale задает масштаб. Например,
-// если в поле стоит значение 75%, то в стиле изображения должно быть написано
-// transform: scale(0.75)
