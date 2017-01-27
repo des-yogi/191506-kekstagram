@@ -90,7 +90,7 @@ var resizePlusBtn = uploadSection.querySelector('.upload-resize-controls-button-
 var resizeMinusBtn = uploadSection.querySelector('.upload-resize-controls-button-dec');
 var sizeOutputField = uploadSection.querySelector('.upload-resize-controls-value');
 sizeOutputField.value = '100%';
-sizeOutputField.step = '25%';
+sizeOutputField.step = 25;
 
 resizePlusBtn.addEventListener('click', function (e) {
   if (parseInt(sizeOutputField.value, 10) < 100) {
@@ -100,8 +100,8 @@ resizePlusBtn.addEventListener('click', function (e) {
 
 });
 resizeMinusBtn.addEventListener('click', function (e) {
-  if (parseInt(sizeOutputField.value, 10) > 0 && parseInt(sizeOutputField.value, 10) > 25) {
-    sizeOutputField.value = parseInt(sizeOutputField.value, 10) - parseInt(sizeOutputField.step, 10) + '%';
+  if (parseInt(sizeOutputField.value, 10) > 25) {
+    sizeOutputField.value = parseInt(sizeOutputField.value, 10) - sizeOutputField.step + '%';
     imgPreview.style.transform = 'scale(' + parseInt(sizeOutputField.value, 10) / 100 + ')';
   }
 });
