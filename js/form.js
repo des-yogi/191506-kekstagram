@@ -26,6 +26,16 @@ var isActivateEvent = function (e) {
   return e.keyCode && e.keyCode === ENTER_KEY_CODE;
 };
 
+var filterInitState = function (e) {
+  imgPreview.classList.remove('filter-chrome', 'filter-sepia', 'filter-marvin', 'filter-phobos', 'filter-heat');
+  imgPreview.classList.add('filter-none');
+  filterNone.setAttribute('checked', 'checked');
+  if (imgPreview.style.transform !== 'scale(1)') {
+    imgPreview.style.transform = 'scale(1)';
+  }
+  e.target.setAttribute('aria-pressed', 'true');
+};
+
 var closeKeydownHadler = function (e) {
   if (e.keyCode && e.keyCode === ESCAPE_KEY_CODE
     && uploadForm.classList.contains('invisible')) {
@@ -67,25 +77,26 @@ cropFormCancel.addEventListener('click', function (e) {
 // соответствующий фильтру. Название CSS класса повторяет название
 // значение выбранного фильтра без префикса upload. Например, если выбран
 // фильтр upload-filter-chrome, изображению нужно добавить класс filter-chrome
+
 var filterNone = uploadSection.querySelector('#upload-filter-none');
 var filterChrome = uploadSection.querySelector('#upload-filter-chrome');
 var filterSepia = uploadSection.querySelector('#upload-filter-sepia');
 var filterMarvin = uploadSection.querySelector('#upload-filter-marvin');
 var filterPhobos = uploadSection.querySelector('#upload-filter-phobos');
 var filterHeat = uploadSection.querySelector('#upload-filter-heat');
+
+var filterNoneLbl = uploadSection.querySelector('.upload-filter-label-none');
+var filterChromeLbl = uploadSection.querySelector('.upload-filter-label-chrome');
+var filterSepiaLbl = uploadSection.querySelector('.upload-filter-label-sepia');
+var filterMarvinLbl = uploadSection.querySelector('.upload-filter-label-marvin');
+var filterPhobosLbl = uploadSection.querySelector('.upload-filter-label-phobos');
+var filterHeatLbl = uploadSection.querySelector('.upload-filter-label-heat');
+
 var imgPreview = uploadSection.querySelector('.filter-image-preview');
 var filterSetup = uploadSection.querySelector('.upload-filter-controls');
+var filterPreview = uploadSection.querySelector('.upload-filter-preview');
 
-var filterInitState = function (e) {
-  filterNone.setAttribute('checked', 'checked');
-  imgPreview.classList.remove('filter-chrome', 'filter-sepia', 'filter-marvin', 'filter-phobos', 'filter-heat');
-  imgPreview.classList.add('filter-none');
-  if (imgPreview.style.transform !== 'scale(1)') {
-    imgPreview.style.transform = 'scale(1)';
-  }
-  e.target.setAttribute('aria-pressed', 'true');
-};
-
+/*
 var filterChromeSet = function (e) {
   imgPreview.classList.remove('filter-sepia', 'filter-marvin', 'filter-phobos', 'filter-heat');
   imgPreview.classList.add('filter-chrome');
@@ -114,90 +125,68 @@ var filterHeatSet = function (e) {
   imgPreview.classList.remove('filter-chrome', 'filter-sepia', 'filter-phobos', 'filter-marvin');
   imgPreview.classList.add('filter-heat');
   e.target.setAttribute('aria-pressed', 'true');
-};
+};*/
 
+var currentFilter = null;
+
+var setFilters = function (filterName, e) {
+  if (currentFilter) {
+    imgPreview.classList.remove(currentFilter);
+    e.target.setAttribute('aria-pressed', 'false');
+  }
+
+  imgPreview.classList.add(filterName);
+  currentFilter = filterName;
+  e.target.setAttribute('aria-pressed', 'true');
+};
 
 filterSetup.addEventListener('click', function (e) {
   if (e.target === filterNone) {
-    filterInitState(e);
+    setFilters('filter-none', e);
+    // filterInitState(e);
   }
   if (e.target === filterChrome) {
-    filterChromeSet(e);
+    setFilters('filter-chrome', e);
+    // filterChromeSet(e);
   }
   if (e.target === filterSepia) {
-    filterSepiaSet(e);
+    setFilters('filter-sepia', e);
+    // filterSepiaSet(e);
   }
   if (e.target === filterMarvin) {
-    filterMarvinSet(e);
+    setFilters('filter-marvin', e);
+    // filterMarvinSet(e);
   }
   if (e.target === filterPhobos) {
-    filterPhobosSet(e);
+    setFilters('filter-phobos', e);
+    // filterPhobosSet(e);
   }
   if (e.target === filterHeat) {
-    filterHeatSet(e);
+    setFilters('filter-heat', e);
+    // filterHeatSet(e);
   }
 });
 
 filterSetup.addEventListener('keydown', function (e) {
-  if (isActivateEvent(e) && e.target === filterNone) {
-    filterInitState(e);
+  if (isActivateEvent(e) && e.target === filterNoneLbl) {
+    setFilters('filter-none', e);
   }
-  if (isActivateEvent(e) && e.target === filterChrome) {
-    filterChromeSet(e);
+  if (isActivateEvent(e) && e.target === filterChromeLbl) {
+    setFilters('filter-chrome', e);
   }
-  if (isActivateEvent(e) && e.target === filterSepia) {
-    filterSepiaSet(e);
+  if (isActivateEvent(e) && e.target === filterSepiaLbl) {
+    setFilters('filter-sepia', e);
   }
-  if (isActivateEvent(e) && e.target === filterMarvin) {
-    filterMarvinSet(e);
+  if (isActivateEvent(e) && e.target === filterMarvinLbl) {
+    setFilters('filter-marvin', e);
   }
-  if (isActivateEvent(e) && e.target === filterPhobos) {
-    filterPhobosSet(e);
+  if (isActivateEvent(e) && e.target === filterPhobosLbl) {
+    setFilters('filter-phobos', e);
   }
-  if (isActivateEvent(e) && e.target === filterHeat) {
-    filterHeatSet(e);
-  }
-});
-
-/* filterNone.addEventListener('click', function (e) {
-  imgPreview.classList.remove('filter-chrome', 'filter-sepia', 'filter-marvin', 'filter-phobos', 'filter-heat');
-  imgPreview.classList.add('filter-none');
-});
-filterNone.addEventListener('keydown', function (e) {
-  if (isActivateEvent(e)) {
-    imgPreview.classList.remove('filter-chrome', 'filter-sepia', 'filter-marvin', 'filter-phobos', 'filter-heat');
-    imgPreview.classList.add('filter-none');
+  if (isActivateEvent(e) && e.target === filterHeatLbl) {
+    setFilters('filter-heat', e);
   }
 });
-
-filterChrome.addEventListener('click', function (e) {
-  imgPreview.classList.remove('filter-sepia', 'filter-marvin', 'filter-phobos', 'filter-heat');
-  imgPreview.classList.add('filter-chrome');
-});
-filterChrome.addEventListener('keydown', function (e) {
-  if (isActivateEvent(e)) {
-    imgPreview.classList.remove('filter-sepia', 'filter-marvin', 'filter-phobos', 'filter-heat');
-    imgPreview.classList.add('filter-chrome');
-  }
-});
-
-filterSepia.addEventListener('click', function (e) {
-  imgPreview.classList.remove('filter-chrome', 'filter-marvin', 'filter-phobos', 'filter-heat');
-  imgPreview.classList.add('filter-sepia');
-});
-filterMarvin.addEventListener('click', function (e) {
-  imgPreview.classList.remove('filter-chrome', 'filter-sepia', 'filter-phobos', 'filter-heat');
-  imgPreview.classList.add('filter-marvin');
-});
-filterPhobos.addEventListener('click', function (e) {
-  imgPreview.classList.remove('filter-chrome', 'filter-sepia', 'filter-marvin', 'filter-heat');
-  imgPreview.classList.add('filter-phobos');
-});
-filterHeat.addEventListener('click', function (e) {
-  imgPreview.classList.remove('filter-chrome', 'filter-sepia', 'filter-phobos', 'filter-marvin');
-  imgPreview.classList.add('filter-heat');
-});*/
-
 
 // Изменение масштаба изображения
 // При нажатии на кнопки .upload-resize-controls-button-dec
