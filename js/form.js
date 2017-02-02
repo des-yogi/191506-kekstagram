@@ -118,48 +118,48 @@ var filterHeatSet = function (e) {
 
 
 filterSetup.addEventListener('click', function (e) {
-  if (e.target == filterNone) {
+  if (e.target === filterNone) {
     filterInitState(e);
   }
-  if (e.target == filterChrome) {
+  if (e.target === filterChrome) {
     filterChromeSet(e);
   }
-  if (e.target == filterSepia) {
+  if (e.target === filterSepia) {
     filterSepiaSet(e);
   }
-  if (e.target == filterMarvin) {
+  if (e.target === filterMarvin) {
     filterMarvinSet(e);
   }
-  if (e.target == filterPhobos) {
+  if (e.target === filterPhobos) {
     filterPhobosSet(e);
   }
-  if (e.target == filterHeat) {
+  if (e.target === filterHeat) {
     filterHeatSet(e);
   }
 });
 
 filterSetup.addEventListener('keydown', function (e) {
-  if (isActivateEvent(e) && e.target == filterNone) {
+  if (isActivateEvent(e) && e.target === filterNone) {
     filterInitState(e);
   }
-  if (isActivateEvent(e) && e.target == filterChrome) {
+  if (isActivateEvent(e) && e.target === filterChrome) {
     filterChromeSet(e);
   }
-  if (isActivateEvent(e) && e.target == filterSepia) {
+  if (isActivateEvent(e) && e.target === filterSepia) {
     filterSepiaSet(e);
   }
-  if (isActivateEvent(e) && e.target == filterMarvin) {
+  if (isActivateEvent(e) && e.target === filterMarvin) {
     filterMarvinSet(e);
   }
-  if (isActivateEvent(e) && e.target == filterPhobos) {
+  if (isActivateEvent(e) && e.target === filterPhobos) {
     filterPhobosSet(e);
   }
-  if (isActivateEvent(e) && e.target == filterHeat) {
+  if (isActivateEvent(e) && e.target === filterHeat) {
     filterHeatSet(e);
   }
 });
 
-/*filterNone.addEventListener('click', function (e) {
+/* filterNone.addEventListener('click', function (e) {
   imgPreview.classList.remove('filter-chrome', 'filter-sepia', 'filter-marvin', 'filter-phobos', 'filter-heat');
   imgPreview.classList.add('filter-none');
 });
