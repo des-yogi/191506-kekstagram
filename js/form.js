@@ -94,7 +94,6 @@ var filterHeatLbl = uploadSection.querySelector('.upload-filter-label-heat');
 
 var imgPreview = uploadSection.querySelector('.filter-image-preview');
 var filterSetup = uploadSection.querySelector('.upload-filter-controls');
-var filterPreview = uploadSection.querySelector('.upload-filter-preview');
 
 /*
 var filterChromeSet = function (e) {
