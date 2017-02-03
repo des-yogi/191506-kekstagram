@@ -9,7 +9,7 @@ var cropForm = uploadSection.querySelector('.upload-overlay');
 var uploadForm = uploadSection.querySelector('#upload-select-image');
 
 var ESCAPE_KEY_CODE = 27;
-var ENTER_KEY_CODE = 13;
+// var ENTER_KEY_CODE = 13;
 
 var toggleFormStatus = function (e) {
   cropForm.classList.toggle('invisible');
@@ -22,14 +22,13 @@ var toggleFormStatus = function (e) {
   }
 };
 
-/*var isActivateEvent = function (e) {
+/* var isActivateEvent = function (e) {
   return e.keyCode && e.keyCode === ENTER_KEY_CODE;
 };*/
 
 var filterInitState = function (e) {
   imgPreview.classList.remove('filter-chrome', 'filter-sepia', 'filter-marvin', 'filter-phobos', 'filter-heat');
   imgPreview.classList.add('filter-none');
-  filterNone.setAttribute('checked', 'checked');
   if (imgPreview.style.transform !== 'scale(1)') {
     imgPreview.style.transform = 'scale(1)';
   }
