@@ -78,12 +78,14 @@ filterSetup.addEventListener('click', function (e) {
   if (e.target.tagName === 'INPUT') {
     return;
   }
-  var filterName = e.target.parentElement.htmlFor.replace(/upload-/, '');
+  var str = 'upload-';
+  var filterName = e.target.parentElement.htmlFor.replace(str, '');
   setFilters(filterName, e);
 });
 
 filterSetup.addEventListener('keydown', function (e) {
-  var filterName = e.target.htmlFor.replace(/upload-/, '');
+  var str = 'upload-';
+  var filterName = e.target.htmlFor.replace(str, '');
   if (isActivateEvent(e)) {
     setFilters(filterName, e);
   }
