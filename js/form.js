@@ -140,7 +140,10 @@ var setFilters = function (filterName, e) {
 };
 
 filterSetup.addEventListener('click', function (e) {
-  if (e.target === filterNone) {
+  var filterName = e.target.parentElement.htmlFor.replace(/upload-/, '');
+  setFilters(filterName, e);
+
+ /* if (e.target === filterNone) {
     setFilters('filter-none', e);
     // filterInitState(e);
   }
@@ -163,11 +166,14 @@ filterSetup.addEventListener('click', function (e) {
   if (e.target === filterHeat) {
     setFilters('filter-heat', e);
     // filterHeatSet(e);
-  }
+  }*/
 });
 
 filterSetup.addEventListener('keydown', function (e) {
-  if (isActivateEvent(e) && e.target === filterNoneLbl) {
+  var filterName = e.target.htmlFor.replace(/upload-/, '');
+  setFilters(filterName, e);
+
+/*  if (isActivateEvent(e) && e.target === filterNoneLbl) {
     setFilters('filter-none', e);
   }
   if (isActivateEvent(e) && e.target === filterChromeLbl) {
@@ -184,7 +190,7 @@ filterSetup.addEventListener('keydown', function (e) {
   }
   if (isActivateEvent(e) && e.target === filterHeatLbl) {
     setFilters('filter-heat', e);
-  }
+  }*/
 });
 
 // Изменение масштаба изображения
