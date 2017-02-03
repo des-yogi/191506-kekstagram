@@ -22,9 +22,9 @@ var toggleFormStatus = function (e) {
   }
 };
 
-var isActivateEvent = function (e) {
+/*var isActivateEvent = function (e) {
   return e.keyCode && e.keyCode === ENTER_KEY_CODE;
-};
+};*/
 
 var filterInitState = function (e) {
   imgPreview.classList.remove('filter-chrome', 'filter-sepia', 'filter-marvin', 'filter-phobos', 'filter-heat');
@@ -78,7 +78,7 @@ cropFormCancel.addEventListener('click', function (e) {
 // значение выбранного фильтра без префикса upload. Например, если выбран
 // фильтр upload-filter-chrome, изображению нужно добавить класс filter-chrome
 
-var filterNone = uploadSection.querySelector('#upload-filter-none');
+/* var filterNone = uploadSection.querySelector('#upload-filter-none');
 var filterChrome = uploadSection.querySelector('#upload-filter-chrome');
 var filterSepia = uploadSection.querySelector('#upload-filter-sepia');
 var filterMarvin = uploadSection.querySelector('#upload-filter-marvin');
@@ -91,7 +91,7 @@ var filterSepiaLbl = uploadSection.querySelector('.upload-filter-label-sepia');
 var filterMarvinLbl = uploadSection.querySelector('.upload-filter-label-marvin');
 var filterPhobosLbl = uploadSection.querySelector('.upload-filter-label-phobos');
 var filterHeatLbl = uploadSection.querySelector('.upload-filter-label-heat');
-
+*/
 var imgPreview = uploadSection.querySelector('.filter-image-preview');
 var filterSetup = uploadSection.querySelector('.upload-filter-controls');
 
