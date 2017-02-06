@@ -58,42 +58,13 @@ cropFormCancel.addEventListener('click', function (e) {
   filterInitState(e);
 });
 
-
-var filterSetup = uploadSection.querySelector('.upload-filter-controls');
-var currentFilter = null;
-
-var setFilters = function (filterName, e) {
-  if (currentFilter) {
-    imgPreview.classList.remove(currentFilter);
-    e.target.setAttribute('aria-pressed', 'false');
-  }
-
-  imgPreview.classList.add(filterName);
-  currentFilter = filterName;
-  e.target.setAttribute('aria-pressed', 'true');
-};
-
-filterSetup.addEventListener('click', function (e) {
-  if (e.target.tagName === 'INPUT') {
-    return;
-  }
-  var str = 'upload-';
-  var filterName = e.target.parentElement.htmlFor.replace(str, '');
-  setFilters(filterName, e);
-});
-
-filterSetup.addEventListener('keydown', function (e) {
-  var str = 'upload-';
-  var filterName = e.target.htmlFor.replace(str, '');
-  if (isActivateEvent(e)) {
-    setFilters(filterName, e);
-  }
-});
+var filterSetup = document.querySelector('.upload-filter-controls');
+window.initializeFilters(filterSetup);
 
 var changeScaleControl = uploadSection.querySelector('.upload-resize-controls');
 
-var resizePlusBtn = uploadSection.querySelector('.upload-resize-controls-button-inc');
-var resizeMinusBtn = uploadSection.querySelector('.upload-resize-controls-button-dec');
+// var resizePlusBtn = uploadSection.querySelector('.upload-resize-controls-button-inc');
+// var resizeMinusBtn = uploadSection.querySelector('.upload-resize-controls-button-dec');
 var sizeOutputField = uploadSection.querySelector('.upload-resize-controls-value');
 var initialScaleValue = '100%';
 var step = 25;
