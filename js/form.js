@@ -3,7 +3,6 @@
 var uploadSection = document.querySelector('.upload');
 var cropForm = uploadSection.querySelector('.upload-overlay');
 var uploadForm = uploadSection.querySelector('#upload-select-image');
-
 var ESCAPE_KEY_CODE = 27;
 var ENTER_KEY_CODE = 13;
 
@@ -59,7 +58,7 @@ cropFormCancel.addEventListener('click', function (e) {
   filterInitState(e);
 });
 
-var imgPreview = uploadSection.querySelector('.filter-image-preview');
+
 var filterSetup = uploadSection.querySelector('.upload-filter-controls');
 var currentFilter = null;
 
@@ -91,23 +90,12 @@ filterSetup.addEventListener('keydown', function (e) {
   }
 });
 
+var changeScaleControl = uploadSection.querySelector('.upload-resize-controls');
+
 var resizePlusBtn = uploadSection.querySelector('.upload-resize-controls-button-inc');
 var resizeMinusBtn = uploadSection.querySelector('.upload-resize-controls-button-dec');
 var sizeOutputField = uploadSection.querySelector('.upload-resize-controls-value');
-sizeOutputField.value = '100%';
-sizeOutputField.step = 25;
+var initialScaleValue = '100%';
+var step = 25;
 
-resizePlusBtn.addEventListener('click', function (e) {
-  if (parseInt(sizeOutputField.value, 10) < 100) {
-    sizeOutputField.value = parseInt(sizeOutputField.value, 10) + parseInt(sizeOutputField.step, 10) + '%';
-    imgPreview.style.transform = 'scale(' + parseInt(sizeOutputField.value, 10) / 100 + ')';
-  }
-
-});
-
-resizeMinusBtn.addEventListener('click', function (e) {
-  if (parseInt(sizeOutputField.value, 10) > 25) {
-    sizeOutputField.value = parseInt(sizeOutputField.value, 10) - sizeOutputField.step + '%';
-    imgPreview.style.transform = 'scale(' + parseInt(sizeOutputField.value, 10) / 100 + ')';
-  }
-});
+window.createScale(changeScaleControl, step, initialScaleValue);
