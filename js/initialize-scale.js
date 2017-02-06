@@ -10,7 +10,7 @@ createScale создающую виджет, управляющий масшта
 
 var sizeOutputField = document.querySelector('.upload-resize-controls-value');
 
-window.createScale = function (element, step, initialScale) {
+window.createScale = function (element, step, initialScale, imgPreview) {
   element.addEventListener('click', function (e) {
     if (e.target.className === 'upload-resize-control upload-resize-controls-button upload-resize-controls-button-inc' && parseInt(initialScale, 10) < 100) {
       initialScale = parseInt(initialScale, 10) + parseInt(step, 10) + '%';
