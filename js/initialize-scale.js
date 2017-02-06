@@ -8,7 +8,7 @@ createScale создающую виджет, управляющий масшта
 и изначальное значение.
 */
 
-var imgPreview = document.querySelector('.filter-image-preview');
+var sizeOutputField = document.querySelector('.upload-resize-controls-value');
 
 window.createScale = function (element, step, initialScale) {
   element.addEventListener('click', function (e) {

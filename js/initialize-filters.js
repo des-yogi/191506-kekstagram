@@ -3,6 +3,14 @@
 Функция должна содержать всю логику по применению фильтров к изображению:
 выбор фильтра и отмену предыдущего, применение фильтра к изображению.
 */
+var ENTER_KEY_CODE = 13;
+var imgPreview = document.querySelector('.filter-image-preview');
+var filterSetup = document.querySelector('.upload-filter-controls');
+
+var isActivateEvent = function (e) {
+  return e.keyCode && e.keyCode === ENTER_KEY_CODE;
+};
+
 window.initializeFilters = function (element) {
   var currentFilter = null;
 
@@ -34,4 +42,3 @@ window.initializeFilters = function (element) {
     }
   });
 };
-

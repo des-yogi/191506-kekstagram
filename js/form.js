@@ -4,7 +4,6 @@ var uploadSection = document.querySelector('.upload');
 var cropForm = uploadSection.querySelector('.upload-overlay');
 var uploadForm = uploadSection.querySelector('#upload-select-image');
 var ESCAPE_KEY_CODE = 27;
-var ENTER_KEY_CODE = 13;
 
 var toggleFormStatus = function (e) {
   cropForm.classList.toggle('invisible');
@@ -15,10 +14,6 @@ var toggleFormStatus = function (e) {
   if (cropForm.classList.contains('invisible')) {
     document.removeEventListener('keydown', closeKeydownHadler);
   }
-};
-
-var isActivateEvent = function (e) {
-  return e.keyCode && e.keyCode === ENTER_KEY_CODE;
 };
 
 var filterInitState = function (e) {
@@ -58,15 +53,14 @@ cropFormCancel.addEventListener('click', function (e) {
   filterInitState(e);
 });
 
-var filterSetup = document.querySelector('.upload-filter-controls');
 window.initializeFilters(filterSetup);
 
 var changeScaleControl = uploadSection.querySelector('.upload-resize-controls');
-
-// var resizePlusBtn = uploadSection.querySelector('.upload-resize-controls-button-inc');
-// var resizeMinusBtn = uploadSection.querySelector('.upload-resize-controls-button-dec');
-var sizeOutputField = uploadSection.querySelector('.upload-resize-controls-value');
 var initialScaleValue = '100%';
 var step = 25;
 
 window.createScale(changeScaleControl, step, initialScaleValue);
+// var resizePlusBtn = uploadSection.querySelector('.upload-resize-controls-button-inc');
+// var resizeMinusBtn = uploadSection.querySelector('.upload-resize-controls-button-dec');
+
+
