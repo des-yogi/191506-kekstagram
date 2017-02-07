@@ -8,19 +8,17 @@ createScale создающую виджет, управляющий масшта
 и изначальное значение.
 */
 
-var sizeOutputField = document.querySelector('.upload-resize-controls-value');
-
-window.createScale = function (element, step, initialScale, imgPreview) {
+window.createScale = function (element, step, initialScale, imgPreview, sizeOutputField) {
   element.addEventListener('click', function (e) {
-    if (e.target.className === 'upload-resize-control upload-resize-controls-button upload-resize-controls-button-inc' && parseInt(initialScale, 10) < 100) {
-      initialScale = parseInt(initialScale, 10) + parseInt(step, 10) + '%';
-      imgPreview.style.transform = 'scale(' + parseInt(initialScale, 10) / 100 + ')';
-      sizeOutputField.value = initialScale;
+    if (e.target.classList.contains('upload-resize-controls-button-inc') && initialScale < 100) {
+      initialScale = initialScale + step;
+      imgPreview.style.transform = 'scale(' + initialScale / 100 + ')';
+      sizeOutputField.value = initialScale + '%';
     }
-    if (e.target.className === 'upload-resize-control upload-resize-controls-button upload-resize-controls-button-dec' && parseInt(initialScale, 10) > 25) {
-      initialScale = parseInt(initialScale, 10) - parseInt(step, 10) + '%';
-      imgPreview.style.transform = 'scale(' + parseInt(initialScale, 10) / 100 + ')';
-      sizeOutputField.value = initialScale;
+    if (e.target.classList.contains('upload-resize-controls-button-dec') && initialScale > 25) {
+      initialScale = initialScale - step;
+      imgPreview.style.transform = 'scale(' + initialScale / 100 + ')';
+      sizeOutputField.value = initialScale + '%';
     }
   });
 };

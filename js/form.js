@@ -7,6 +7,7 @@ var ESCAPE_KEY_CODE = 27;
 
 var imgPreview = document.querySelector('.filter-image-preview');
 var filterSetup = document.querySelector('.upload-filter-controls');
+var sizeOutputField = document.querySelector('.upload-resize-controls-value');
 
 var toggleFormStatus = function (e) {
   cropForm.classList.toggle('invisible');
@@ -59,11 +60,7 @@ cropFormCancel.addEventListener('click', function (e) {
 window.initializeFilters(imgPreview, filterSetup);
 
 var changeScaleControl = uploadSection.querySelector('.upload-resize-controls');
-var initialScaleValue = '100%';
+var initialScaleValue = 100;
 var step = 25;
 
-window.createScale(changeScaleControl, step, initialScaleValue, imgPreview);
-// var resizePlusBtn = uploadSection.querySelector('.upload-resize-controls-button-inc');
-// var resizeMinusBtn = uploadSection.querySelector('.upload-resize-controls-button-dec');
-
-
+window.createScale(changeScaleControl, step, initialScaleValue, imgPreview, sizeOutputField);
