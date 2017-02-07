@@ -3,9 +3,11 @@
 var uploadSection = document.querySelector('.upload');
 var cropForm = uploadSection.querySelector('.upload-overlay');
 var uploadForm = uploadSection.querySelector('#upload-select-image');
-
 var ESCAPE_KEY_CODE = 27;
-var ENTER_KEY_CODE = 13;
+
+var imgPreview = document.querySelector('.filter-image-preview');
+var filterSetup = document.querySelector('.upload-filter-controls');
+var sizeOutputField = document.querySelector('.upload-resize-controls-value');
 
 var toggleFormStatus = function (e) {
   cropForm.classList.toggle('invisible');
@@ -16,10 +18,6 @@ var toggleFormStatus = function (e) {
   if (cropForm.classList.contains('invisible')) {
     document.removeEventListener('keydown', closeKeydownHadler);
   }
-};
-
-var isActivateEvent = function (e) {
-  return e.keyCode && e.keyCode === ENTER_KEY_CODE;
 };
 
 var filterInitState = function (e) {
@@ -59,55 +57,10 @@ cropFormCancel.addEventListener('click', function (e) {
   filterInitState(e);
 });
 
-var imgPreview = uploadSection.querySelector('.filter-image-preview');
-var filterSetup = uploadSection.querySelector('.upload-filter-controls');
-var currentFilter = null;
+window.initializeFilters(imgPreview, filterSetup);
 
-var setFilters = function (filterName, e) {
-  if (currentFilter) {
-    imgPreview.classList.remove(currentFilter);
-    e.target.setAttribute('aria-pressed', 'false');
-  }
+var changeScaleControl = uploadSection.querySelector('.upload-resize-controls');
+var initialScaleValue = 100;
+var step = 25;
 
-  imgPreview.classList.add(filterName);
-  currentFilter = filterName;
-  e.target.setAttribute('aria-pressed', 'true');
-};
-
-filterSetup.addEventListener('click', function (e) {
-  if (e.target.tagName === 'INPUT') {
-    return;
-  }
-  var str = 'upload-';
-  var filterName = e.target.parentElement.htmlFor.replace(str, '');
-  setFilters(filterName, e);
-});
-
-filterSetup.addEventListener('keydown', function (e) {
-  var str = 'upload-';
-  var filterName = e.target.htmlFor.replace(str, '');
-  if (isActivateEvent(e)) {
-    setFilters(filterName, e);
-  }
-});
-
-var resizePlusBtn = uploadSection.querySelector('.upload-resize-controls-button-inc');
-var resizeMinusBtn = uploadSection.querySelector('.upload-resize-controls-button-dec');
-var sizeOutputField = uploadSection.querySelector('.upload-resize-controls-value');
-sizeOutputField.value = '100%';
-sizeOutputField.step = 25;
-
-resizePlusBtn.addEventListener('click', function (e) {
-  if (parseInt(sizeOutputField.value, 10) < 100) {
-    sizeOutputField.value = parseInt(sizeOutputField.value, 10) + parseInt(sizeOutputField.step, 10) + '%';
-    imgPreview.style.transform = 'scale(' + parseInt(sizeOutputField.value, 10) / 100 + ')';
-  }
-
-});
-
-resizeMinusBtn.addEventListener('click', function (e) {
-  if (parseInt(sizeOutputField.value, 10) > 25) {
-    sizeOutputField.value = parseInt(sizeOutputField.value, 10) - sizeOutputField.step + '%';
-    imgPreview.style.transform = 'scale(' + parseInt(sizeOutputField.value, 10) / 100 + ')';
-  }
-});
+window.createScale(changeScaleControl, step, initialScaleValue, imgPreview, sizeOutputField);
