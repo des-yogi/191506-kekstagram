@@ -45,8 +45,6 @@ window.initializeFilters = (function () {
 
 })();
 
-
-
 /* window.initializeFilters = function (elementPreview, element) {
   var currentFilter = null;
 
