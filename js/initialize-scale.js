@@ -8,7 +8,24 @@ createScale создающую виджет, управляющий масшта
 и изначальное значение.
 */
 
-window.createScale = function (element, step, initialScale, imgPreview, sizeOutputField) {
+window.createScale = (function () {
+  return function (element, step, initialScale, imgPreview, sizeOutputField) {
+    element.addEventListener('click', function (e) {
+      if (e.target.classList.contains('upload-resize-controls-button-inc') && initialScale < 100) {
+        initialScale = initialScale + step;
+        imgPreview.style.transform = 'scale(' + initialScale / 100 + ')';
+        sizeOutputField.value = initialScale + '%';
+      }
+      if (e.target.classList.contains('upload-resize-controls-button-dec') && initialScale > 25) {
+        initialScale = initialScale - step;
+        imgPreview.style.transform = 'scale(' + initialScale / 100 + ')';
+        sizeOutputField.value = initialScale + '%';
+      }
+    });
+  };
+})();
+
+/* window.createScale = function (element, step, initialScale, imgPreview, sizeOutputField) {
   element.addEventListener('click', function (e) {
     if (e.target.classList.contains('upload-resize-controls-button-inc') && initialScale < 100) {
       initialScale = initialScale + step;
@@ -22,3 +39,4 @@ window.createScale = function (element, step, initialScale, imgPreview, sizeOutp
     }
   });
 };
+*/
