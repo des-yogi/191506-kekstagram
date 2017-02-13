@@ -14,31 +14,16 @@ window.createScale = (function () {
       if (e.target.classList.contains('upload-resize-controls-button-inc') && initialScale < 100) {
         initialScale = initialScale + step;
         sizeOutputField.value = initialScale + '%';
-        cb(initialScale);
         // imgPreview.style.transform = 'scale(' + initialScale / 100 + ')';
       }
       if (e.target.classList.contains('upload-resize-controls-button-dec') && initialScale > 25) {
         initialScale = initialScale - step;
         sizeOutputField.value = initialScale + '%';
-        cb(initialScale);
         // imgPreview.style.transform = 'scale(' + initialScale / 100 + ')';
+      }
+      if (typeof cb === 'function') {
+        cb(initialScale);
       }
     });
   };
 })();
-
-/* window.createScale = function (element, step, initialScale, imgPreview, sizeOutputField) {
-  element.addEventListener('click', function (e) {
-    if (e.target.classList.contains('upload-resize-controls-button-inc') && initialScale < 100) {
-      initialScale = initialScale + step;
-      imgPreview.style.transform = 'scale(' + initialScale / 100 + ')';
-      sizeOutputField.value = initialScale + '%';
-    }
-    if (e.target.classList.contains('upload-resize-controls-button-dec') && initialScale > 25) {
-      initialScale = initialScale - step;
-      imgPreview.style.transform = 'scale(' + initialScale / 100 + ')';
-      sizeOutputField.value = initialScale + '%';
-    }
-  });
-};
-*/
