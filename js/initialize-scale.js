@@ -7,6 +7,9 @@ createScale создающую виджет, управляющий масшта
 масштабом изображения, шаг, с которым будет происходить изменение
 и изначальное значение.
 */
+window.scaleApply = function (param) {
+  imgPreview.style.transform = 'scale(' + param / 100 + ')';
+};
 
 window.createScale = (function () {
   return function (element, step, initialScale, cb, sizeOutputField) {
