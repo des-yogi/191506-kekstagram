@@ -38,6 +38,10 @@ var closeKeydownHadler = function (e) {
   }
 };
 
+var scaleApply = function (param) {
+  imgPreview.style.transform = 'scale(' + param / 100 + ')';
+};
+
 document.addEventListener('DOMContentLoaded', function (e) {
   toggleFormStatus(e);
 });
@@ -63,4 +67,4 @@ var changeScaleControl = uploadSection.querySelector('.upload-resize-controls');
 var initialScaleValue = 100;
 var step = 25;
 
-window.createScale(changeScaleControl, step, initialScaleValue, imgPreview, sizeOutputField);
+window.createScale(changeScaleControl, step, initialScaleValue, scaleApply, sizeOutputField);
