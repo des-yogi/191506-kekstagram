@@ -8,7 +8,7 @@ createScale создающую виджет, управляющий масшта
 и изначальное значение.
 */
 window.createScale = (function () {
-  return function (element, step, initialScale, cb, sizeOutputField) {
+  return function (element, step, initialScale, scaleCallBack, sizeOutputField) {
     element.addEventListener('click', function (e) {
       if (e.target.classList.contains('upload-resize-controls-button-inc') && initialScale < 100) {
         initialScale = initialScale + step;
@@ -18,8 +18,8 @@ window.createScale = (function () {
         initialScale = initialScale - step;
         sizeOutputField.value = initialScale + '%';
       }
-      if (typeof cb === 'function') {
-        cb(initialScale);
+      if (typeof scaleCallBack === 'function') {
+        scaleCallBack(initialScale);
       }
     });
   };
