@@ -9,7 +9,7 @@ window.pictures = (function () {
     var pictures = e.target.response;
     var templateElement = document.querySelector('#picture-template');
     var elementToClone = templateElement.content.querySelector('.picture');
-    var clickAndKeydownHandler = function (e, elem) {
+    var clickAndKeydownHandler = function (elem) {
       elem.addEventListener('click', function (e) {
         e.preventDefault();
         window.showGallery(elem);
@@ -25,7 +25,7 @@ window.pictures = (function () {
       picture.alt = 'Photo from gallery';
       likes.innerText = item.likes;
       comments.innerText = item.comments.length;
-      clickAndKeydownHandler(e, newElement);
+      clickAndKeydownHandler(newElement);
       picturesContainer.appendChild(newElement);
     });
 
