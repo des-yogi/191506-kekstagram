@@ -1,8 +1,5 @@
 'use strict';
-/*
-Функция должна содержать всю логику по применению фильтров к изображению:
-выбор фильтра и отмену предыдущего, применение фильтра к изображению.
-*/
+
 window.initializeFilters = (function () {
   return function (elementPreview, element) {
     var currentFilter = null;

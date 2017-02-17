@@ -8,7 +8,7 @@ var uploadFile = uploadSection.querySelector('#upload-file');
 
 var imgPreview = document.querySelector('.filter-image-preview');
 var filterSetup = document.querySelector('.upload-filter-controls');
-var sizeOutputField = document.querySelector('.upload-resize-controls-value');
+// var sizeOutputField = document.querySelector('.upload-resize-controls-value');
 
 var toggleFormStatus = function (e) {
   cropForm.classList.toggle('invisible');
@@ -61,4 +61,4 @@ var changeScaleControl = uploadSection.querySelector('.upload-resize-controls');
 var initialScaleValue = 100;
 var step = 25;
 
-window.createScale(changeScaleControl, step, initialScaleValue, scaleApply, sizeOutputField);
+window.createScale(changeScaleControl, step, initialScaleValue, scaleApply);
