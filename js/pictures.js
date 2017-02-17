@@ -4,12 +4,12 @@ var DATA_URL = 'https://intensive-javascript-server-myophkugvq.now.sh/kekstagram
 
 window.pictures = (function () {
 
-    var clickAndKeydownHandler = function (elem) {
-      elem.addEventListener('click', function (e) {
-        e.preventDefault();
-        window.showGallery(elem);
-      });
-    };
+  var clickAndKeydownHandler = function (elem) {
+    elem.addEventListener('click', function (e) {
+      e.preventDefault();
+      window.showGallery(elem);
+    });
+  };
 
   return function (e) {
     var picturesContainer = document.querySelector('.pictures');
