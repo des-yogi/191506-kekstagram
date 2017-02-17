@@ -9,6 +9,11 @@ window.pictures = (function () {
       e.preventDefault();
       window.showGallery(elem);
     });
+    elem.addEventListener('keydown', function (e) {
+      if (window.utils.isActivateEvent(e)) {
+        window.showGallery(elem);
+      }
+    });
   };
 
   return function (e) {
@@ -19,6 +24,7 @@ window.pictures = (function () {
 
     pictures.forEach(function (item) {
       var newElement = elementToClone.cloneNode(true);
+      newElement.tabindex = '0'
       var picture = newElement.querySelector('img');
       var likes = newElement.querySelector('.picture-likes');
       var comments = newElement.querySelector('.picture-comments');
@@ -26,7 +32,9 @@ window.pictures = (function () {
       picture.alt = 'Photo from gallery';
       likes.innerText = item.likes;
       comments.innerText = item.comments.length;
+
       clickAndKeydownHandler(newElement);
+
       picturesContainer.appendChild(newElement);
     });
 
