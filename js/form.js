@@ -4,6 +4,7 @@ var uploadSection = document.querySelector('.upload');
 var cropForm = uploadSection.querySelector('.upload-overlay');
 var uploadForm = uploadSection.querySelector('#upload-select-image');
 var uploadFileBtn = uploadSection.querySelector('.upload-file');
+var uploadFile = uploadSection.querySelector('#upload-file');
 
 var imgPreview = document.querySelector('.filter-image-preview');
 var filterSetup = document.querySelector('.upload-filter-controls');
@@ -46,8 +47,6 @@ var scaleApply = function (param) {
 document.addEventListener('DOMContentLoaded', function (e) {
   toggleFormStatus(e);
 });
-
-var uploadFile = uploadSection.querySelector('#upload-file');
 
 uploadFile.addEventListener('change', function (e) {
   toggleFormStatus(e);

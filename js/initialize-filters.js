@@ -15,6 +15,7 @@ window.initializeFilters = (function () {
 
       elementPreview.classList.add(filterName);
       currentFilter = filterName;
+      e.target.control.checked = true;
       e.target.setAttribute('aria-pressed', 'true');
     };
 
