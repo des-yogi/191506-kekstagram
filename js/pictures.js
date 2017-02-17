@@ -4,17 +4,18 @@ var DATA_URL = 'https://intensive-javascript-server-myophkugvq.now.sh/kekstagram
 
 window.pictures = (function () {
 
-  return function (e) {
-    var picturesContainer = document.querySelector('.pictures');
-    var pictures = e.target.response;
-    var templateElement = document.querySelector('#picture-template');
-    var elementToClone = templateElement.content.querySelector('.picture');
     var clickAndKeydownHandler = function (elem) {
       elem.addEventListener('click', function (e) {
         e.preventDefault();
         window.showGallery(elem);
       });
     };
+
+  return function (e) {
+    var picturesContainer = document.querySelector('.pictures');
+    var pictures = e.target.response;
+    var templateElement = document.querySelector('#picture-template');
+    var elementToClone = templateElement.content.querySelector('.picture');
 
     pictures.forEach(function (item) {
       var newElement = elementToClone.cloneNode(true);
