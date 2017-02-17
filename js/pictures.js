@@ -24,7 +24,7 @@ window.pictures = (function () {
 
     pictures.forEach(function (item) {
       var newElement = elementToClone.cloneNode(true);
-      newElement.tabindex = '0'
+      newElement.tabindex = '0';
       var picture = newElement.querySelector('img');
       var likes = newElement.querySelector('.picture-likes');
       var comments = newElement.querySelector('.picture-comments');
