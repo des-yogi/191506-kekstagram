@@ -8,7 +8,6 @@ var uploadFile = uploadSection.querySelector('#upload-file');
 
 var imgPreview = document.querySelector('.filter-image-preview');
 var filterSetup = document.querySelector('.upload-filter-controls');
-// var sizeOutputField = document.querySelector('.upload-resize-controls-value');
 
 var toggleFormStatus = function (e) {
   cropForm.classList.toggle('invisible');
