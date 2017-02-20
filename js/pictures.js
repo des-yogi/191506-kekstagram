@@ -16,27 +16,83 @@ window.pictures = (function () {
     });
   };
 
+  function filterSortRandom(picturesArr) {
+    var newArr = [];
+    var clonePicturesArr = picturesArr.slice();
+    var elemToSortAmount = 10;
+    for (var i = 0; i < elemToSortAmount; i++) {
+      var randomElem = window.utils.getRandomElement(clonePicturesArr);
+      var removed = clonePicturesArr.splice(clonePicturesArr.indexOf(randomElem), 1);
+      newArr.push(removed[0]);
+    }
+    return newArr.concat(clonePicturesArr);
+  };
+
+  function filterMostCommented(picturesArr) {
+
+    function compareObj(a, b) {
+      return b.comments.length - a.comments.length;
+    }
+
+    return picturesArr.sort(compareObj);
+  };
+
   return function (e) {
     var picturesContainer = document.querySelector('.pictures');
     var pictures = e.target.response;
     var templateElement = document.querySelector('#picture-template');
     var elementToClone = templateElement.content.querySelector('.picture');
+    var filtersBlock = document.querySelector('.filters');
 
-    pictures.forEach(function (item) {
-      var newElement = elementToClone.cloneNode(true);
-      newElement.tabindex = '0';
-      var picture = newElement.querySelector('img');
-      var likes = newElement.querySelector('.picture-likes');
-      var comments = newElement.querySelector('.picture-comments');
-      picture.src = item.url;
-      picture.alt = 'Photo from gallery';
-      likes.innerText = item.likes;
-      comments.innerText = item.comments.length;
+    var renderImages = function (imgArr) {
+      if (!!picturesContainer.innerHTML) {
+        while (picturesContainer.firstChild) {
+          picturesContainer.removeChild(picturesContainer.firstChild);
+        }
+      }
 
-      clickAndKeydownHandler(newElement);
+      imgArr.forEach(function (item) {
+        var newElement = elementToClone.cloneNode(true);
+        newElement.tabindex = '0';
+        var picture = newElement.querySelector('img');
+        var likes = newElement.querySelector('.picture-likes');
+        var comments = newElement.querySelector('.picture-comments');
+        picture.src = item.url;
+        picture.alt = 'Photo from gallery';
+        likes.innerText = item.likes;
+        comments.innerText = item.comments.length;
 
-      picturesContainer.appendChild(newElement);
-    });
+        clickAndKeydownHandler(newElement);
+
+        picturesContainer.appendChild(newElement);
+      });
+    };
+
+    renderImages(pictures);
+
+    filtersBlock.classList.remove('hidden');
+
+    var filtersClickHandler = (function () {
+      return filtersBlock.addEventListener('click', function (e) {
+        switch (e.toElement.htmlFor) {
+          case ('filter-popular'):
+            renderImages(pictures);
+          break;
+          case ('filter-new'):
+            renderImages(filterSortRandom(pictures));
+          break;
+          case ('filter-discussed'):
+            renderImages(filterMostCommented(pictures));
+            // alert('Click 3');
+          break;
+        }
+      });
+
+    })();
+
+
+    //filtersClickHandler();
+
 
   };
 

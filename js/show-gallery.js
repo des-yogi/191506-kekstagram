@@ -34,8 +34,8 @@ window.showGallery = (function () {
     var galleryLikesCount = galleryOverlay.querySelector('.likes-count');
     var galleryCommentsCount = galleryOverlay.querySelector('.comments-count');
     galleryImage.src = elem.childNodes[1].attributes[0].value;
-    galleryLikesCount.innerHTML = elem.children[1].children[0].innerText;
-    galleryCommentsCount.innerHTML = elem.children[1].children[1].innerText;
+    galleryLikesCount.innerHTML = elem.children[1].children[1].innerText;
+    galleryCommentsCount.innerHTML = elem.children[1].children[0].innerText;
   };
 
 })();

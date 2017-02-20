@@ -15,6 +15,10 @@ window.utils = (function () {
 
     isDeactivateEvent: function (e) {
       return isKeyboardEvent(e) && e.keyCode === ESCAPE_KEY_CODE;
+    },
+
+    getRandomElement: function (arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
     }
   };
 
