@@ -85,8 +85,8 @@ window.pictures = (function () {
           case ('filter-discussed'):
             renderImages(filterMostCommented(pictures));
             break;
-          }
-        });
+        }
+      });
 
     };
 
