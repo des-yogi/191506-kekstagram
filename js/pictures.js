@@ -26,7 +26,7 @@ window.pictures = (function () {
       newArr.push(removed[0]);
     }
     return newArr.concat(clonePicturesArr);
-  };
+  }
 
   function filterMostCommented(picturesArr) {
 
@@ -34,8 +34,8 @@ window.pictures = (function () {
       return b.comments.length - a.comments.length;
     }
 
-    return picturesArr.sort(compareObj);
-  };
+    return picturesArr.slice().sort(compareObj);
+  }
 
   return function (e) {
     var picturesContainer = document.querySelector('.pictures');
@@ -45,7 +45,7 @@ window.pictures = (function () {
     var filtersBlock = document.querySelector('.filters');
 
     var renderImages = function (imgArr) {
-      if (!!picturesContainer.innerHTML) {
+      if (picturesContainer.innerHTML !== '') {
         while (picturesContainer.firstChild) {
           picturesContainer.removeChild(picturesContainer.firstChild);
         }
@@ -72,27 +72,25 @@ window.pictures = (function () {
 
     filtersBlock.classList.remove('hidden');
 
-    var filtersClickHandler = (function () {
-      return filtersBlock.addEventListener('click', function (e) {
+    var filtersClickHandler = function () {
+
+      filtersBlock.addEventListener('click', function (e) {
         switch (e.toElement.htmlFor) {
           case ('filter-popular'):
             renderImages(pictures);
-          break;
+            break;
           case ('filter-new'):
             renderImages(filterSortRandom(pictures));
-          break;
+            break;
           case ('filter-discussed'):
             renderImages(filterMostCommented(pictures));
-            // alert('Click 3');
-          break;
-        }
-      });
+            break;
+          }
+        });
 
-    })();
+    };
 
-
-    //filtersClickHandler();
-
+    filtersClickHandler();
 
   };
 
