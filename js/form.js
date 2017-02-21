@@ -53,6 +53,10 @@ uploadFile.addEventListener('change', function (e) {
 });
 
 var cropFormCancel = uploadSection.querySelector('.upload-form-cancel');
+cropFormCancel.addEventListener('click', function (e) {
+  e.preventDefault();
+  toggleFormStatus(e);
+});
 
 window.initializeFilters(imgPreview, filterSetup);
 

@@ -74,7 +74,7 @@ window.pictures = (function () {
 
     var filtersClickHandler = function () {
 
-      filtersBlock.addEventListener('click', function (evt) {
+      return filtersBlock.addEventListener('click', function (evt) {
         switch (evt.toElement.htmlFor) {
           case ('filter-popular'):
             renderImages(pictures);
