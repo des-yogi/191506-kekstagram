@@ -6,18 +6,17 @@ window.dragLevelFilters = (function () {
     var filterLevelLine = document.querySelector('.upload-filter-level');
     var filterPin = document.querySelector('.upload-filter-level-pin');
     var filterLevel = document.querySelector('.upload-filter-level-val');
-    var imgPreview = document.querySelector('.filter-image-preview');
     filterLevelLine.classList.remove('invisible');
 
-    filterPin.onmousedown = function(e) {
+    filterPin.onmousedown = function (e) {
       var pinCoords = getCoords(filterPin);
       var shiftX = e.pageX - pinCoords.left;
 
       var sliderCoords = getCoords(filterLevelLine);
 
-      document.onmousemove = function(e) {
+      document.onmousemove = function (evt) {
 
-        var newLeft = e.pageX - shiftX - sliderCoords.left;
+        var newLeft = evt.pageX - shiftX - sliderCoords.left;
 
         if (newLeft < 0) {
           newLeft = 0;
@@ -31,14 +30,14 @@ window.dragLevelFilters = (function () {
         filterLevel.style.width = newLeft + 'px';
       };
 
-      document.onmouseup = function() {
+      document.onmouseup = function () {
         document.onmousemove = document.onmouseup = null;
       };
 
       return false;
     };
 
-    filterPin.ondragstart = function() {
+    filterPin.ondragstart = function () {
       return false;
     };
 
