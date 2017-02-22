@@ -16,25 +16,25 @@ window.pictures = (function () {
     });
   };
 
-  function filterSortRandom(picturesArr) {
+  function filterSortRandom(arr) {
     var newArr = [];
-    var clonePicturesArr = picturesArr.slice();
-    var elemToSortAmount = 10;
+    var shuffleArr = window.utils.makeShuffle(arr);
+    var elemToSortAmount = 12;
+
     for (var i = 0; i < elemToSortAmount; i++) {
-      var randomElem = window.utils.getRandomElement(clonePicturesArr);
-      var removed = clonePicturesArr.splice(clonePicturesArr.indexOf(randomElem), 1);
-      newArr.push(removed[0]);
+      newArr.push(shuffleArr[i]);
     }
-    return newArr.concat(clonePicturesArr);
+
+    return newArr;
   }
 
-  function filterMostCommented(picturesArr) {
+  function filterMostCommented(arr) {
 
     function compareObj(a, b) {
       return b.comments.length - a.comments.length;
     }
 
-    return picturesArr.slice().sort(compareObj);
+    return arr.sort(compareObj);
   }
 
   return function (e) {
@@ -43,6 +43,7 @@ window.pictures = (function () {
     var templateElement = document.querySelector('#picture-template');
     var elementToClone = templateElement.content.querySelector('.picture');
     var filtersBlock = document.querySelector('.filters');
+    var cloneArr = window.utils.cloneArray(pictures);
 
     var renderImages = function (imgArr) {
       if (picturesContainer.innerHTML !== '') {
@@ -80,10 +81,10 @@ window.pictures = (function () {
             renderImages(pictures);
             break;
           case ('filter-new'):
-            renderImages(filterSortRandom(pictures));
+            renderImages(filterSortRandom(cloneArr));
             break;
           case ('filter-discussed'):
-            renderImages(filterMostCommented(pictures));
+            renderImages(filterMostCommented(cloneArr));
             break;
         }
       });

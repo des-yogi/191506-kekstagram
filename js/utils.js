@@ -19,7 +19,27 @@ window.utils = (function () {
 
     getRandomElement: function (arr) {
       return arr[Math.floor(Math.random() * arr.length)];
+    },
+
+    cloneArray: function (arr) {
+      var newArr = [];
+      for (var i = 0; i < arr.length; i++) {
+        newArr.push(arr[i]);
+      }
+      return newArr;
+    },
+
+    makeShuffle: function (arr) {
+      var i, temp, j, len = arr.length;
+      for (i = 0; i < len; i++) {
+        j = ~~(Math.random() * (i + 1));
+        temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+      }
+      return arr;
     }
+
   };
 
 })();
