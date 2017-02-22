@@ -1,5 +1,7 @@
 'use strict';
 
+(function () {
+
 var uploadSection = document.querySelector('.upload');
 var cropForm = uploadSection.querySelector('.upload-overlay');
 var uploadForm = uploadSection.querySelector('#upload-select-image');
@@ -65,3 +67,6 @@ var initialScaleValue = 100;
 var step = 25;
 
 window.createScale(changeScaleControl, step, initialScaleValue, scaleApply);
+
+})();
+
