@@ -33,9 +33,9 @@ window.showGallery = (function () {
     var galleryImage = galleryOverlay.querySelector('.gallery-overlay-image');
     var galleryLikesCount = galleryOverlay.querySelector('.likes-count');
     var galleryCommentsCount = galleryOverlay.querySelector('.comments-count');
-    galleryImage.src = elem.childNodes[1].attributes[0].value;
-    galleryLikesCount.innerHTML = elem.children[1].children[0].innerText;
-    galleryCommentsCount.innerHTML = elem.children[1].children[1].innerText;
+    galleryImage.src = elem.firstElementChild.currentSrc;
+    galleryLikesCount.innerHTML = elem.innerText.replace(/^\d+/g, '');
+    galleryCommentsCount.innerHTML = elem.innerText.replace(/\d+$/g, '');
   };
 
 })();

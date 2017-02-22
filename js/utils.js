@@ -15,7 +15,33 @@ window.utils = (function () {
 
     isDeactivateEvent: function (e) {
       return isKeyboardEvent(e) && e.keyCode === ESCAPE_KEY_CODE;
+    },
+
+    getRandomElement: function (arr) {
+      return arr[Math.floor(Math.random() * arr.length)];
+    },
+
+    cloneArray: function (arr) {
+      var newArr = [];
+      for (var i = 0; i < arr.length; i++) {
+        newArr.push(arr[i]);
+      }
+      return newArr;
+    },
+
+    makeShuffle: function (arr) {
+      var i;
+      var temp;
+      var j;
+      for (i = 0; i < arr.length; i++) {
+        j = ~~(Math.random() * (i + 1));
+        temp = arr[i];
+        arr[i] = arr[j];
+        arr[j] = temp;
+      }
+      return arr;
     }
+
   };
 
 })();
