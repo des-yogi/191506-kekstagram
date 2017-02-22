@@ -45,24 +45,27 @@ window.utils = (function () {
     onValueChanged: function (filterName, currentFilterAmount) {
       var picture = document.querySelector('.filter-image-preview');
       switch (filterName) {
+        case 'filter-none':
+          picture.style.filter = '';
+          break;
         case 'filter-chrome':
-        picture.style.filter = 'grayscale(' + currentFilterAmount + ')';
-        break;
+          picture.style.filter = 'grayscale(' + currentFilterAmount + ')';
+          break;
         case 'filter-sepia':
-        picture.style.filter = 'sepia(' + currentFilterAmount + ')';
-        break;
+          picture.style.filter = 'sepia(' + currentFilterAmount + ')';
+          break;
         case 'filter-marvin':
-        picture.style.filter = 'invert(' + currentFilterAmount + ')';
-        break;
+          picture.style.filter = 'invert(' + currentFilterAmount + ')';
+          break;
         case 'filter-phobos':
-        picture.style.filter = 'hue-rotate(' + (currentFilterAmount * 360) + 'deg)';
-        break;
+          picture.style.filter = 'hue-rotate(' + (currentFilterAmount * 360) + 'deg)';
+          break;
         case 'filter-heat':
-        picture.style.filter = 'saturate(' + (currentFilterAmount * 3) + ')';
-        break;
+          picture.style.filter = 'saturate(' + (currentFilterAmount * 3) + ')';
+          break;
         default:
-        picture.style.filter = '';
-        break;
+          picture.style.filter = '';
+          break;
       }
     }
 
