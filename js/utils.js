@@ -30,8 +30,10 @@ window.utils = (function () {
     },
 
     makeShuffle: function (arr) {
-      var i, temp, j, len = arr.length;
-      for (i = 0; i < len; i++) {
+      var i;
+      var temp;
+      var j;
+      for (i = 0; i < arr.length; i++) {
         j = ~~(Math.random() * (i + 1));
         temp = arr[i];
         arr[i] = arr[j];
