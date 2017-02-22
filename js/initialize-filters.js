@@ -13,6 +13,7 @@ window.initializeFilters = (function () {
       elementPreview.classList.add(filterName);
       currentFilter = filterName;
       e.target.setAttribute('aria-pressed', 'true');
+      elementPreview.style.filter = 'none';
       window.dragLevelFilters(currentFilter);
     };
 

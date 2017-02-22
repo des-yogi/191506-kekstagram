@@ -7,6 +7,8 @@ window.dragLevelFilters = (function () {
     var filterPin = document.querySelector('.upload-filter-level-pin');
     var filterLevel = document.querySelector('.upload-filter-level-val');
     filterLevelLine.classList.remove('invisible');
+    filterPin.style.left = 0;
+    filterLevel.style.width = 0;
 
     filterPin.onmousedown = function (e) {
       var pinCoords = getCoords(filterPin);
