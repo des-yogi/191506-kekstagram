@@ -40,6 +40,30 @@ window.utils = (function () {
         arr[j] = temp;
       }
       return arr;
+    },
+
+    onValueChanged: function (filterName, currentFilterAmount) {
+      var picture = document.querySelector('.filter-image-preview');
+      switch (filterName) {
+        case 'filter-chrome':
+        picture.style.filter = 'grayscale(' + currentFilterAmount + ')';
+        break;
+        case 'filter-sepia':
+        picture.style.filter = 'sepia(' + currentFilterAmount + ')';
+        break;
+        case 'filter-marvin':
+        picture.style.filter = 'invert(' + currentFilterAmount + ')';
+        break;
+        case 'filter-phobos':
+        picture.style.filter = 'hue-rotate(' + (currentFilterAmount * 360) + 'deg)';
+        break;
+        case 'filter-heat':
+        picture.style.filter = 'saturate(' + (currentFilterAmount * 3) + ')';
+        break;
+        default:
+        picture.style.filter = '';
+        break;
+      }
     }
 
   };

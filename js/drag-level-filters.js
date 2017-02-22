@@ -2,7 +2,7 @@
 
 window.dragLevelFilters = (function () {
 
-  return function () {
+  return function (filterName, onValueChanged) {
     var filterLevelLine = document.querySelector('.upload-filter-level');
     var filterPin = document.querySelector('.upload-filter-level-pin');
     var filterLevel = document.querySelector('.upload-filter-level-val');
@@ -28,6 +28,8 @@ window.dragLevelFilters = (function () {
 
         filterPin.style.left = newLeft + 'px';
         filterLevel.style.width = newLeft + 'px';
+        var currentFilterAmount = 1 / (456 / newLeft);
+        window.utils.onValueChanged(filterName, currentFilterAmount);
       };
 
       document.onmouseup = function () {
