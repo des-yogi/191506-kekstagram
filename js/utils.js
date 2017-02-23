@@ -21,12 +21,8 @@ window.utils = (function () {
       return arr[Math.floor(Math.random() * arr.length)];
     },
 
-    cloneArray: function (arr) {
-      var newArr = [];
-      for (var i = 0; i < arr.length; i++) {
-        newArr.push(arr[i]);
-      }
-      return newArr;
+    getClonedPictures: function (arr) {
+      return arr.slice(0);
     },
 
     makeShuffle: function (arr) {

@@ -17,14 +17,9 @@ window.pictures = (function () {
   };
 
   function filterSortRandom(arr) {
-    var newArr = [];
     var shuffleArr = window.utils.makeShuffle(arr);
     var elemToSortAmount = 12;
-
-    for (var i = 0; i < elemToSortAmount; i++) {
-      newArr.push(shuffleArr[i]);
-    }
-
+    var newArr = arr.slice(0, elemToSortAmount);
     return newArr;
   }
 
@@ -43,7 +38,7 @@ window.pictures = (function () {
     var templateElement = document.querySelector('#picture-template');
     var elementToClone = templateElement.content.querySelector('.picture');
     var filtersBlock = document.querySelector('.filters');
-    var cloneArr = window.utils.cloneArray(pictures);
+    var clonedPictures = window.utils.getClonedPictures(pictures);
 
     var renderImages = function (imgArr) {
       if (picturesContainer.innerHTML !== '') {
@@ -81,10 +76,10 @@ window.pictures = (function () {
             renderImages(pictures);
             break;
           case ('filter-new'):
-            renderImages(filterSortRandom(cloneArr));
+            renderImages(filterSortRandom(clonedPictures));
             break;
           case ('filter-discussed'):
-            renderImages(filterMostCommented(cloneArr));
+            renderImages(filterMostCommented(clonedPictures));
             break;
         }
       });
