@@ -21,7 +21,7 @@ window.utils = (function () {
       return arr[Math.floor(Math.random() * arr.length)];
     },
 
-    getClonedPictures: function (arr) {
+    cloneArr: function (arr) {
       return arr.slice(0);
     },
 

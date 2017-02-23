@@ -19,7 +19,7 @@ window.pictures = (function () {
   function filterSortRandom(arr) {
     var shuffleArr = window.utils.makeShuffle(arr);
     var elemToSortAmount = 12;
-    var newArr = arr.slice(0, elemToSortAmount);
+    var newArr = shuffleArr.slice(0, elemToSortAmount);
     return newArr;
   }
 
@@ -38,7 +38,7 @@ window.pictures = (function () {
     var templateElement = document.querySelector('#picture-template');
     var elementToClone = templateElement.content.querySelector('.picture');
     var filtersBlock = document.querySelector('.filters');
-    var clonedPictures = window.utils.getClonedPictures(pictures);
+    var clonedPictures = window.utils.cloneArr(pictures);
 
     var renderImages = function (imgArr) {
       if (picturesContainer.innerHTML !== '') {

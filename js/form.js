@@ -7,9 +7,13 @@
   var uploadForm = uploadSection.querySelector('#upload-select-image');
   var uploadFileBtn = uploadSection.querySelector('.upload-file');
   var uploadFile = uploadSection.querySelector('#upload-file');
-
+  var scaleValueField = uploadSection.querySelector('.upload-resize-controls-value');
   var imgPreview = document.querySelector('.filter-image-preview');
   var filterSetup = document.querySelector('.upload-filter-controls');
+
+  var changeScaleControl = uploadSection.querySelector('.upload-resize-controls');
+  var initialScaleValue = 100;
+  var step = 25;
 
   var toggleFormStatus = function (e) {
     cropForm.classList.toggle('invisible');
@@ -26,18 +30,18 @@
   var filterInitState = function (e) {
     imgPreview.classList.remove('filter-chrome', 'filter-sepia', 'filter-marvin', 'filter-phobos', 'filter-heat');
     imgPreview.classList.add('filter-none');
-    if (imgPreview.style.transform !== 'scale(1)') {
-      imgPreview.style.transform = 'scale(1)';
-    }
+    imgPreview.style.transform = 'scale(1)';
+    scaleValueField.value = initialScaleValue + '%';
+    window.createScale(changeScaleControl, step, initialScaleValue, scaleApply);
     e.target.setAttribute('aria-pressed', 'true');
   };
 
   var closeKeydownHadler = function (e) {
     if (window.utils.isDeactivateEvent(e)
       && uploadForm.classList.contains('invisible')) {
+      filterInitState(e);
       toggleFormStatus(e);
       cropFormCancel.setAttribute('aria-pressed', 'true');
-      filterInitState(e);
     }
   };
 
@@ -57,14 +61,11 @@
   var cropFormCancel = uploadSection.querySelector('.upload-form-cancel');
   cropFormCancel.addEventListener('click', function (e) {
     e.preventDefault();
+    filterInitState(e);
     toggleFormStatus(e);
   });
 
   window.initializeFilters(imgPreview, filterSetup);
-
-  var changeScaleControl = uploadSection.querySelector('.upload-resize-controls');
-  var initialScaleValue = 100;
-  var step = 25;
 
   window.createScale(changeScaleControl, step, initialScaleValue, scaleApply);
 
