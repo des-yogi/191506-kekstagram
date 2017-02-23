@@ -18,6 +18,6 @@ window.createScale = (function () {
         scaleCallBack(initialScale);
       }
     });
-
   };
+
 })();

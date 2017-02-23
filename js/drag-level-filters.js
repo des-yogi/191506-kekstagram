@@ -2,32 +2,41 @@
 
 window.dragLevelFilters = (function () {
 
-  return function () {
-    var filterLevelLine = document.querySelector('.upload-filter-level');
+  return function (filterName, onValueChanged) {
+    var filterLevelBox = document.querySelector('.upload-filter-level');
+    var filterLevelLine = document.querySelector('.upload-filter-level-line');
     var filterPin = document.querySelector('.upload-filter-level-pin');
     var filterLevel = document.querySelector('.upload-filter-level-val');
-    filterLevelLine.classList.remove('invisible');
+    filterLevelBox.classList.remove('invisible');
+    var maxRigthValue = filterLevelLine.clientWidth;
+    var currentFilterAmount = 0.75;
+    window.utils.onValueChanged(filterName, currentFilterAmount);
+    filterPin.style.left = maxRigthValue * currentFilterAmount + 'px';
+    filterLevel.style.width = maxRigthValue * currentFilterAmount + 'px';
 
     filterPin.onmousedown = function (e) {
       var pinCoords = getCoords(filterPin);
       var shiftX = e.pageX - pinCoords.left;
+      var newLeft = maxRigthValue / 2;
 
-      var sliderCoords = getCoords(filterLevelLine);
+      var sliderCoords = getCoords(filterLevelBox);
 
       document.onmousemove = function (evt) {
 
-        var newLeft = evt.pageX - shiftX - sliderCoords.left;
+        newLeft = evt.pageX - shiftX - sliderCoords.left;
 
         if (newLeft < 0) {
           newLeft = 0;
         }
-        var rightEdge = filterLevelLine.offsetWidth - filterPin.offsetWidth - filterPin.clientWidth;
+        var rightEdge = filterLevelBox.offsetWidth - filterPin.offsetWidth - filterPin.clientWidth;
         if (newLeft > rightEdge) {
           newLeft = rightEdge;
         }
 
         filterPin.style.left = newLeft + 'px';
         filterLevel.style.width = newLeft + 'px';
+        currentFilterAmount = 1 / (maxRigthValue / newLeft);
+        window.utils.onValueChanged(filterName, currentFilterAmount);
       };
 
       document.onmouseup = function () {
