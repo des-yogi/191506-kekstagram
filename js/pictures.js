@@ -18,7 +18,7 @@ window.pictures = (function () {
 
   function filterSortRandom(arr) {
     var shuffleArr = window.utils.makeShuffle(arr);
-    var elemToSortAmount = 12;
+    var elemToSortAmount = 10;
     var newArr = shuffleArr.slice(0, elemToSortAmount);
     return newArr;
   }
