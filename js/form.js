@@ -19,6 +19,7 @@
     cropForm.classList.toggle('invisible');
     uploadForm.classList.toggle('invisible');
     uploadFileBtn.focus();
+
     if (uploadForm.classList.contains('invisible')) {
       document.addEventListener('keydown', closeKeydownHadler);
     }
@@ -68,6 +69,10 @@
   window.initializeFilters(imgPreview, filterSetup);
 
   window.createScale(changeScaleControl, step, initialScaleValue, scaleApply);
+
+  var DATA_URL = 'https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/data';
+
+  window.load(DATA_URL, window.pictures);
 
 })();
 

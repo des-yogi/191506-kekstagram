@@ -2,10 +2,11 @@
 
 window.initializeFilters = (function () {
   return function (elementPreview, element) {
+
     var currentFilter = null;
 
     var setFilters = function (filterName, e) {
-      if (currentFilter) {
+      if (currentFilter !== '') {
         elementPreview.classList.remove(currentFilter);
         e.target.setAttribute('aria-pressed', 'false');
       }
