@@ -1,7 +1,5 @@
 'use strict';
 
-var DATA_URL = 'https://intensive-javascript-server-myophkugvq.now.sh/kekstagram/data';
-
 window.pictures = (function () {
 
   var clickAndKeydownHandler = function (elem) {
@@ -28,7 +26,6 @@ window.pictures = (function () {
     function compareObj(a, b) {
       return b.comments.length - a.comments.length;
     }
-
     return arr.sort(compareObj);
   }
 
@@ -36,9 +33,9 @@ window.pictures = (function () {
     var picturesContainer = document.querySelector('.pictures');
     var pictures = e.target.response;
     var templateElement = document.querySelector('#picture-template');
-    var elementToClone = templateElement.content.querySelector('.picture');
     var filtersBlock = document.querySelector('.filters');
     var clonedPictures = window.utils.cloneArr(pictures);
+    var elementToClone = templateElement.content.querySelector('.picture');
 
     var renderImages = function (imgArr) {
       if (picturesContainer.innerHTML !== '') {
@@ -50,13 +47,10 @@ window.pictures = (function () {
       imgArr.forEach(function (item) {
         var newElement = elementToClone.cloneNode(true);
         newElement.tabindex = '0';
-        var picture = newElement.querySelector('img');
-        var likes = newElement.querySelector('.picture-likes');
-        var comments = newElement.querySelector('.picture-comments');
-        picture.src = item.url;
-        picture.alt = 'Photo from gallery';
-        likes.innerText = item.likes;
-        comments.innerText = item.comments.length;
+        newElement.children[0].src = item.url;
+        newElement.children[0].alt = 'Photo from gallery';
+        newElement.children[1].children[1].innerText = item.likes;
+        newElement.children[1].children[0].innerText = item.comments.length;
 
         clickAndKeydownHandler(newElement);
 
@@ -71,7 +65,8 @@ window.pictures = (function () {
     var filtersClickHandler = function () {
 
       return filtersBlock.addEventListener('click', function (evt) {
-        switch (evt.toElement.htmlFor) {
+        var eventProp = evt.target.htmlFor;
+        switch (eventProp) {
           case ('filter-popular'):
             renderImages(pictures);
             break;
@@ -91,5 +86,3 @@ window.pictures = (function () {
   };
 
 })();
-
-window.load(DATA_URL, window.pictures);
